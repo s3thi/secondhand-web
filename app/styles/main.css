@@ -1,1 +1,17 @@
-/* Will be compiled down to a single stylesheet with your sass files */
+.fullwidth {
+    display: block;
+    width: 100%;
+}
+
+.sidenav {
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.25);
+}
+
+.sidenav-wrap {
+    padding: 2em;
+}
+
+.margin-top {
+    margin-top: 1em;
+}

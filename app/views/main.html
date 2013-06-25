@@ -1,9 +1,73 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
+<div class="row">
+  <div class="span12">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="/">Secondhand</a>
+
+        <!-- User dropdown. -->
+        <ul class="nav pull-right">
+          <li class="dropdown">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+              <i class="icon-user"></i> Ankur Sethi
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="/settings"><i class="icon-gear"></i> Settings</a></li>
+              <li><a href="/logout"><i class="icon-signout"></i> Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+        <!-- End user dropdown -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span4 sidenav">
+    <div class="sidenav-wrap">
+      <div class="row">
+        <div class="span1"><i class="icon-time icon-4x"></i></div>
+        <div class="span2"><h3>01:11:45</h3></div>
+      </div>
+
+      <div class="row">
+        <div class="span2 offset1">
+          <button class="btn btn-danger fullwidth">
+            <i class="icon-stop"></i> Stop
+          </button>
+        </div>
+      </div>
+
+      <div class="row margin-top">
+        <div class="span1"><strong>Project:</strong></div>
+        <div class="span2"><p>Secondhand App.</p></div>
+      </div>
+
+      <div class="row margin-top">
+        <div class="span1"><strong>Task:</strong></div>
+        <div class="span2"><p>Finish designing new layout.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="span8 ">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#">Tracker</a>
+      </li>
+      <li><a href="#">Statistics</a></li>
+    </ul>
+
+    <h3>Secondhand App</h3>
+    <ul>
+      <li><a href="#">Build REST API using Django and Tastypie.</a></li>
+      <li><a href="#">Finish designing new layout.</a></li>
+      <li><a href="#">Cuddle with puppies.</a></li>
+      <li><a href="#">Create Angular services for talking to REST API.</a></li>
+      <li><a href="#">Create Angular service for managing the timer.</a></li>
+      <li><a href="#">More cuddling.</a></li>
+    </ul>
+  </div>
 </div>
