@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('secondhandApp', [])
+angular.module('SecondhandApp', [])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
