@@ -1,0 +1,36 @@
+<div class="row" ng-controller="LoginCtrl">
+  <div class="span8 offset2 sidenav">
+    <div class="sidenav-wrap">
+      <form class="form-horizontal" ng-submit="requestApiToken()">
+        <fieldset>
+          <div id="legend">
+            <legend class="">Log into Secondhand</legend>
+          </div>
+          <div class="control-group">
+            <!-- Username -->
+            <label class="control-label" for="username">Username</label>
+            <div class="controls">
+              <input type="text" id="username" ng-model="username" class="input-xlarge">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <!-- Password-->
+            <label class="control-label" for="password">Password</label>
+            <div class="controls">
+              <input type="password" id="password" ng-model="password" class="input-xlarge">
+            </div>
+          </div>
+
+
+          <div class="control-group">
+            <!-- Button -->
+            <div class="controls">
+              <button class="btn btn-success">Login</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
