@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('SecondhandApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, Project) {
+    // Get a list of all projects for this user on view load.
+    Project.get({}, function(data) {
+      $scope.projects = data.objects;
+    });
   });
