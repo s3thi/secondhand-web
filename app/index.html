@@ -26,7 +26,6 @@
       <script src="components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
     <div ng-controller="AppCtrl" class="container">
       <div class="row">
         <div class="span12">
@@ -54,7 +53,80 @@
         </div>
       </div>
 
-      <div ng-view></div>
+      <div class="row" ng-show="haveToken()">
+        <div class="span4 sidenav">
+          <div class="sidenav-wrap">
+            <div class="row">
+              <div class="span1"><i class="icon-time icon-4x"></i></div>
+              <div class="span2"><h3>01:11:45</h3></div>
+            </div>
+
+            <div class="row">
+              <div class="span2 offset1">
+                <button class="btn btn-danger fullwidth">
+                  <i class="icon-stop"></i> Stop
+                </button>
+              </div>
+            </div>
+
+            <div class="row margin-top">
+              <div class="span1"><strong>Project:</strong></div>
+              <div class="span2"><p>Secondhand App.</p></div>
+            </div>
+
+            <div class="row margin-top">
+              <div class="span1"><strong>Task:</strong></div>
+              <div class="span2"><p>Finish designing new layout.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="span8">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#/">Tracker</a></li>
+            <li><a href="#/statistics">Statistics</a></li>
+          </ul>
+
+          <div ng-view></div>
+        </div>
+      </div>
+
+      <div class="row" ng-controller="LoginCtrl" ng-hide="haveToken()">
+        <div class="span8 offset2 sidenav">
+          <div class="sidenav-wrap">
+            <form class="form-horizontal" ng-submit="requestApiToken()">
+              <fieldset>
+                <div id="legend">
+                  <legend class="">Log into Secondhand</legend>
+                </div>
+                <div class="control-group">
+                  <!-- Username -->
+                  <label class="control-label" for="username">Email</label>
+                  <div class="controls">
+                    <input type="text" id="username" ng-model="username" class="input-xlarge">
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <!-- Password-->
+                  <label class="control-label" for="password">Password</label>
+                  <div class="controls">
+                    <input type="password" id="password" ng-model="password" class="input-xlarge">
+                  </div>
+                </div>
+
+
+                <div class="control-group">
+                  <!-- Button -->
+                  <div class="controls">
+                    <button class="btn btn-success">Login</button>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script type="text/javascript" src="components/jquery/jquery.min.js"></script>

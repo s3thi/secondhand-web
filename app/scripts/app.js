@@ -1,17 +1,12 @@
 'use strict';
 
-angular.module('SecondhandApp', [])
+angular.module('SecondhandApp', ['ngResource'])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         secure: true
-      })
-      .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl',
-        secure: false
       })
       .when('/project/:projectId', {
         templateUrl: 'views/project.html',
@@ -21,6 +16,11 @@ angular.module('SecondhandApp', [])
       .when('/task/:taskId', {
         templateUrl: 'views/task.html',
         controller: 'TaskCtrl',
+        secure: true
+      })
+      .when('/statistics', {
+        templateUrl: 'views/statistics.html',
+        controller: 'StatisticsCtrl',
         secure: true
       })
       .otherwise({
