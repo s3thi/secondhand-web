@@ -49,5 +49,10 @@ angular.module('SecondhandApp')
         });
     };
 
+    ApiToken.logout = function() {
+      // TODO: this should delete the session on the server.
+      ApiToken.clearToken();
+    };
+
     return ApiToken;
   }]);
