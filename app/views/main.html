@@ -7,7 +7,10 @@
 
 <div ng-controller="MainCtrl">
   <h3>Projects</h3>
-  <ul class="entity-list">
-    <li ng-repeat="project in projects"><a href="#/project/{{project.id}}">{{ project.name }}</a></li>
-  </ul>
+  <table class="table">
+    <tr ng-repeat="project in projects">
+      <td>{{ $index + 1 }}</td>
+      <td><a ng-href="#/project/{{project.id}}">{{ project.name }}</a></td>
+    </tr>
+  </table>
 </div>
