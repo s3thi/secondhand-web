@@ -23,11 +23,10 @@
     margin-top: 1em;
 }
 
-.entity-list {
-    list-style-type: none;
-    margin-left: 0px;
+.badge-hover {
+    cursor: pointer;
 }
 
-.entity-list li {
-    margin-bottom: 0.7em;
+.badge-hover:hover {
+    background-color: #777777;
 }
