@@ -8,6 +8,20 @@
 'use strict';
 
 angular.module('SecondhandApp')
-  .controller('ProjectCtrl', function($scope) {
+  .controller('ProjectCtrl', function($scope, $routeParams, Project, Task) {
+    $scope.project_id = $routeParams.projectId;
 
+    // Get the details of the parent project on view load.
+    Project.get({
+      id: $scope.project_id
+    }, function(data) {
+      $scope.parentProject = data;
+    });
+
+    // Get a list of tasks for the parent project on view load.
+    Task.get({
+      project__id: $scope.project_id
+    }, function(data) {
+      $scope.tasks = data.objects;
+    });
   });

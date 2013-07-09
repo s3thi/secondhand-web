@@ -4,5 +4,9 @@
   See the file LICENSE for copying permissions.
 -->
 
-
-<h1>Nothing here yet.</h1>
+<div ng-controller="ProjectCtrl">
+  <h3>{{ parentProject.name }}</h3>
+  <ul>
+    <li ng-repeat="task in tasks">{{ task.name }}</li>
+  </ul>
+</div>
