@@ -6,7 +6,11 @@
 
 <div ng-controller="ProjectCtrl">
   <h3>{{ parentProject.name }}</h3>
-  <ul class="entity-list">
-    <li ng-repeat="task in tasks">{{ task.name }}</li>
-  </ul>
+  <table class="table">
+    <tr ng-repeat="task in tasks">
+      <td>{{ $index + 1 }}</td>
+      <td><a ng-href="#/task/{{ task.id }}">{{ task.name }}</a></td>
+      <td><span class="badge badge-hover"><i class="icon-play"></i></span></td>
+    </tr>
+  </table>
 </div>
