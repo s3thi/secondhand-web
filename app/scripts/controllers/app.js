@@ -19,4 +19,8 @@ angular.module('SecondhandApp')
     $scope.logout = function() {
       ApiToken.logout();
     };
+
+    $scope.getUsername = function() {
+      return ApiToken.getUsername();
+    }
   });

@@ -34,10 +34,10 @@
               <a class="brand" href="/">Secondhand</a>
 
               <!-- User dropdown. -->
-              <ul class="nav pull-right">
+              <ul class="nav pull-right" ng-show="haveToken()">
                 <li class="dropdown">
                   <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                    <i class="icon-user"></i> Ankur Sethi
+                    <i class="icon-user"></i> {{  getUsername() }}
                     <b class="caret"></b>
                   </a>
                   <ul class="dropdown-menu">
@@ -150,6 +150,8 @@
     <script type="text/javascript" src="scripts/controllers/app.js"></script>
     <script type="text/javascript" src="scripts/controllers/login.js"></script>
     <script type="text/javascript" src="scripts/controllers/main.js"></script>
+    <script type="text/javascript" src="scripts/controllers/project.js"></script>
+    <script type="text/javascript" src="scripts/controllers/statistics.js"></script>
     <!-- endbuild -->
   </body>
 </html>

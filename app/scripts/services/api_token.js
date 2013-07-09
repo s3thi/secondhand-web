@@ -36,6 +36,18 @@ angular.module('SecondhandApp')
       return localStorage.getItem('apiToken');
     };
 
+    ApiToken.storeUsername = function(username) {
+      localStorage.setItem('username', username);
+    };
+
+    ApiToken.clearUsername = function() {
+      localStorage.removeItem('username');
+    };
+
+    ApiToken.getUsername = function() {
+      return localStorage.getItem('username');
+    };
+
     ApiToken.requestApiToken = function (credentials) {
       $http.post(Config.BASE_API_URL + 'token', {
         username: credentials.username,
@@ -44,6 +56,7 @@ angular.module('SecondhandApp')
         .success(function (data, status) {
           if (status === 201) {
             ApiToken.storeToken(data);
+            ApiToken.storeUsername(credentials.username);
             $rootScope.$broadcast('logged_in');
           }
         });
@@ -52,6 +65,7 @@ angular.module('SecondhandApp')
     ApiToken.logout = function() {
       // TODO: this should delete the session on the server.
       ApiToken.clearToken();
+      ApiToken.clearUsername();
     };
 
     return ApiToken;
