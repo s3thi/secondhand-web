@@ -5,4 +5,4 @@ This is a web client for [Secondhand](http://github.com/GeneralMaximus/secondhan
 
 # License
 
-Secondhand is licensed under the terms of the MIT license. See the file LICENSE for copying permissions.
+Secondhand web client is licensed under the terms of the MIT license. See the file LICENSE for copying permissions.
