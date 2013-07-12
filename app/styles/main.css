@@ -30,3 +30,8 @@
 .badge-hover:hover {
     background-color: #777777;
 }
+
+.title-buttons {
+    line-height: 40px;
+    margin: 10px 0;
+}
