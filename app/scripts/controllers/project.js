@@ -8,7 +8,7 @@
 'use strict';
 
 angular.module('SecondhandApp')
-  .controller('ProjectCtrl', function($scope, $routeParams, Project, Task) {
+  .controller('ProjectCtrl', function($scope, $routeParams, $dialog, Project, Task) {
     $scope.project_id = $routeParams.projectId;
 
     // Get the details of the parent project on view load.
@@ -24,4 +24,18 @@ angular.module('SecondhandApp')
     }, function(data) {
       $scope.tasks = data.objects;
     });
+
+    $scope.addTask = function() {
+      var d = $dialog.dialog({
+        dialogFade: false,
+        templateUrl: 'views/dialogs/new_task.html',
+        controller: 'NewItemDialogCtrl'
+      });
+
+      d.open().then(function(result) {
+        if (result) {
+          alert(result);
+        }
+      });
+    };
   });
