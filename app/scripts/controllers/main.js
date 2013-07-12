@@ -8,9 +8,23 @@
 'use strict';
 
 angular.module('SecondhandApp')
-  .controller('MainCtrl', function ($scope, Project) {
+  .controller('MainCtrl', function ($scope, $dialog, Project) {
     // Get a list of all projects for this user on view load.
     Project.get({}, function(data) {
       $scope.projects = data.objects;
     });
+
+    $scope.addProject = function() {
+      var d = $dialog.dialog({
+        dialogFade: false,
+        templateUrl: 'views/dialogs/new_project.html',
+        controller: 'NewItemDialogCtrl'
+      });
+
+      d.open().then(function(result) {
+        if (result) {
+          alert(result);
+        }
+      });
+    };
   });
