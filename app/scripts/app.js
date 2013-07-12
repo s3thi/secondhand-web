@@ -7,7 +7,7 @@
 
 'use strict';
 
-angular.module('SecondhandApp', ['ngResource'])
+angular.module('SecondhandApp', ['ngResource', 'ui.bootstrap.dialog'])
   .config(function ($routeProvider, $httpProvider) {
     $routeProvider
       .when('/', {
