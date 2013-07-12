@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h3>New Project</h3>
+</div>
+
+<div class="modal-body">
+  <form class="form-horizontal" ng-submit="close(projectName)">
+    <div class="control-group">
+      <label class="control-label" for="inputProjectName">Project name</label>
+      <div class="controls">
+        <input type="text" id="inputProjectName" placeholder="New Project" ng-model="projectName">
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button ng-click="close(projectName)" class="btn btn-primary">Create</button>
+  <button ng-click="close()" class="btn">Cancel</button>
+</div>
