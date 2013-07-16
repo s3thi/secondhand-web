@@ -25,17 +25,27 @@ angular.module('SecondhandApp')
       $scope.tasks = data.objects;
     });
 
-    $scope.addTask = function() {
+    // TODO: how can I be more DRY here? This is the same code that I have in main.js.
+    var createTask = function(taskName) {
+      if (taskName) {
+        var t = new Task({
+          name: taskName,
+          project: $scope.parentProject.resource_uri
+        });
+
+        t.$save(function(result) {
+          $scope.tasks.push(result);
+        });
+      }
+    };
+
+    $scope.showAddTaskDialog = function() {
       var d = $dialog.dialog({
         dialogFade: false,
         templateUrl: 'views/dialogs/new_task.html',
         controller: 'NewItemDialogCtrl'
       });
 
-      d.open().then(function(result) {
-        if (result) {
-          alert(result);
-        }
-      });
+      d.open().then(createTask);
     };
   });

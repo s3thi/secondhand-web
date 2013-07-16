@@ -14,17 +14,25 @@ angular.module('SecondhandApp')
       $scope.projects = data.objects;
     });
 
-    $scope.addProject = function() {
+    var createProject = function(projectName) {
+      if (projectName) {
+        var p = new Project({
+          name: projectName
+        });
+
+        p.$save(function(result) {
+          $scope.projects.push(result);
+        });
+      }
+    };
+
+    $scope.showAddProjectDialog = function() {
       var d = $dialog.dialog({
         dialogFade: false,
         templateUrl: 'views/dialogs/new_project.html',
         controller: 'NewItemDialogCtrl'
       });
 
-      d.open().then(function(result) {
-        if (result) {
-          alert(result);
-        }
-      });
+      d.open().then(createProject);
     };
   });

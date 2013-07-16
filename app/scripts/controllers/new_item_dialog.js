@@ -10,7 +10,6 @@
 angular.module('SecondhandApp')
   .controller('NewItemDialogCtrl', function ($scope, dialog) {
     $scope.close = function(result) {
-      console.log(result);
       dialog.close(result);
     };
   });
