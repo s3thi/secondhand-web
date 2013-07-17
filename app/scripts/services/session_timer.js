@@ -14,4 +14,46 @@
 //
 angular.module('SecondhandApp')
   .factory('SessionTimer', ['$timeout', function($timeout) {
+    var SessionTimer = {
+      currentTime: 0,
+      currentTask: null,
+      currentProject: null,
+      running: false
+    };
+
+    var updateTimer = function() {
+      SessionTimer.currentTime = new Date() - SessionTimer._lastTick;
+
+      if (SessionTimer.running === true) {
+        console.log('tick for task ' + SessionTimer.currentTask.name);
+        SessionTimer._timeout = $timeout(updateTimer, 1000);
+      }
+    };
+
+    SessionTimer.startTimer = function(project, task) {
+      if (SessionTimer.running) {
+        SessionTimer.pauseTimer();
+        SessionTimer.resetTimer();
+      }
+
+      SessionTimer.currentTask = task;
+      SessionTimer.currentProject = project;
+
+      // Bookkeeping.
+      SessionTimer.running = true;
+      SessionTimer._lastTick = new Date();
+      SessionTimer._timeout = $timeout(updateTimer, 1000);
+    };
+
+    SessionTimer.pauseTimer = function() {
+      SessionTimer.running = false;
+      $timeout.cancel(SessionTimer._timeout);
+    };
+
+    SessionTimer.resetTimer = function() {
+      SessionTimer.currentTime = 0;
+      delete SessionTimer._lastTick;
+    };
+
+    return SessionTimer;
   }]);
