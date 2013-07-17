@@ -61,16 +61,19 @@
       </div>
 
       <div class="row" ng-show="haveToken()">
-        <div class="span4 sidenav">
+        <div class="span4 sidenav" ng-controller="TimerCtrl">
           <div class="sidenav-wrap">
             <div class="row">
               <div class="span1"><i class="icon-time icon-4x"></i></div>
-              <div class="span2"><h3>01:11:45</h3></div>
+              <div class="span2">
+                <h3 ng-show="SessionTimer.running">{{ SessionTimer.currentTime }}</h3>
+                <h3 ng-hide="SessionTimer.running">--:--:--</h3>
+              </div>
             </div>
 
             <div class="row">
               <div class="span2 offset1">
-                <button class="btn btn-danger fullwidth">
+                <button class="btn btn-danger fullwidth" ng-disabled="!SessionTimer.running" ng-click="SessionTimer.pauseTimer()">
                   <i class="icon-stop"></i> Stop
                 </button>
               </div>
@@ -78,12 +81,14 @@
 
             <div class="row margin-top">
               <div class="span1"><strong>Project:</strong></div>
-              <div class="span2"><p>Secondhand App.</p></div>
+              <div class="span2" ng-show="SessionTimer.running"><p>{{ SessionTimer.currentProject.name }}</p></div>
+              <div class="span2" ng-hide="SessionTimer.running"><p class="muted">doing nothing</p></div>
             </div>
 
             <div class="row margin-top">
               <div class="span1"><strong>Task:</strong></div>
-              <div class="span2"><p>Finish designing new layout.</p></div>
+              <div class="span2" ng-show="SessionTimer.running"><p>{{ SessionTimer.currentTask.name }}</p></div>
+              <div class="span2" ng-hide="SessionTimer.running"><p class="muted">doing nothing</p></div>
             </div>
           </div>
         </div>
@@ -162,6 +167,7 @@
     <script type="text/javascript" src="scripts/controllers/statistics.js"></script>
     <script type="text/javascript" src="scripts/controllers/task.js"></script>
     <script type="text/javascript" src="scripts/controllers/new_item_dialog.js"></script>
+    <script type="text/javascript" src="scripts/controllers/timer.js"></script>
     <!-- endbuild -->
   </body>
 </html>

@@ -8,8 +8,9 @@
 'use strict';
 
 angular.module('SecondhandApp')
-  .controller('ProjectCtrl', function($scope, $routeParams, $dialog, Project, Task) {
+  .controller('ProjectCtrl', function($scope, $routeParams, $dialog, Project, Task, SessionTimer) {
     $scope.project_id = $routeParams.projectId;
+    $scope.SessionTimer = SessionTimer;
 
     // Get the details of the parent project on view load.
     Project.get({
