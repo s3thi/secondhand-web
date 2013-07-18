@@ -16,6 +16,8 @@ angular.module('SecondhandApp')
   .factory('SessionTimer', ['$timeout', function($timeout) {
     var SessionTimer = {
       currentTime: 0,
+      startTime: null,
+      endTime: null,
       currentTask: null,
       currentProject: null,
       running: false
@@ -41,12 +43,14 @@ angular.module('SecondhandApp')
 
       // Bookkeeping.
       SessionTimer.running = true;
-      SessionTimer._lastTick = new Date();
+      SessionTimer.startTime = new Date();
+      SessionTimer._lastTick = SessionTimer.startTime;
       SessionTimer._timeout = $timeout(updateTimer, 1000);
     };
 
     SessionTimer.pauseTimer = function() {
       SessionTimer.running = false;
+      SessionTimer.endTime = new Date();
       $timeout.cancel(SessionTimer._timeout);
     };
 
