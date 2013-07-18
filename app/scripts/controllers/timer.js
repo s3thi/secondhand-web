@@ -8,6 +8,27 @@
 'use strict';
 
 angular.module('SecondhandApp')
-  .controller('TimerCtrl', function($scope, SessionTimer) {
+  .controller('TimerCtrl', function($scope, WorkSession, SessionTimer) {
     $scope.SessionTimer = SessionTimer;
+    $scope.savingWorkSession = false;
+
+    $scope.endWorkSession = function() {
+      $scope.savingWorkSession = true;
+      SessionTimer.pauseTimer();
+
+      var session = new WorkSession({
+        task: SessionTimer.currentTask.resource_uri,
+        start_time: SessionTimer.startTime,
+        end_time: SessionTimer.endTime
+      });
+
+      session.$save(function(result) {
+        SessionTimer.resetTimer();
+        $scope.savingWorkSession = false;
+      });
+    };
+
+    $scope.sidebarActive = function() {
+      return SessionTimer.running || $scope.savingWorkSession;
+    };
   });
