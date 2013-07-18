@@ -66,29 +66,31 @@
             <div class="row">
               <div class="span1"><i class="icon-time icon-4x"></i></div>
               <div class="span2">
-                <h3 ng-show="SessionTimer.running">{{ SessionTimer.currentTime }}</h3>
-                <h3 ng-hide="SessionTimer.running">--:--:--</h3>
+                <h3 ng-show="sidebarActive()">{{ SessionTimer.currentTime }}</h3>
+                <h3 ng-hide="sidebarActive()">--:--:--</h3>
               </div>
             </div>
 
             <div class="row">
               <div class="span2 offset1">
-                <button class="btn btn-danger fullwidth" ng-disabled="!SessionTimer.running" ng-click="SessionTimer.pauseTimer()">
-                  <i class="icon-stop"></i> Stop
+                <button class="btn btn-danger fullwidth" ng-disabled="!SessionTimer.running || savingWorkSession" ng-click="endWorkSession()">
+                  <i class="icon-stop"></i>
+                  <span ng-show="!savingWorkSession">Stop</span>
+                  <span ng-show="savingWorkSession">Saving ...</span>
                 </button>
               </div>
             </div>
 
             <div class="row margin-top">
               <div class="span1"><strong>Project:</strong></div>
-              <div class="span2" ng-show="SessionTimer.running"><p>{{ SessionTimer.currentProject.name }}</p></div>
-              <div class="span2" ng-hide="SessionTimer.running"><p class="muted">doing nothing</p></div>
+              <div class="span2" ng-show="sidebarActive()"><p>{{ SessionTimer.currentProject.name }}</p></div>
+              <div class="span2" ng-hide="sidebarActive()"><p class="muted">doing nothing</p></div>
             </div>
 
             <div class="row margin-top">
               <div class="span1"><strong>Task:</strong></div>
-              <div class="span2" ng-show="SessionTimer.running"><p>{{ SessionTimer.currentTask.name }}</p></div>
-              <div class="span2" ng-hide="SessionTimer.running"><p class="muted">doing nothing</p></div>
+              <div class="span2" ng-show="sidebarActive()"><p>{{ SessionTimer.currentTask.name }}</p></div>
+              <div class="span2" ng-hide="sidebarActive()"><p class="muted">doing nothing</p></div>
             </div>
           </div>
         </div>
