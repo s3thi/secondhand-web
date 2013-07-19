@@ -6,20 +6,23 @@
 
 
 <div ng-controller="MainCtrl">
-  <div class="row">
-    <div class="span6"><h3>Projects</h3></div>
-    <div class="span2 title-buttons"><button class="btn btn-primary" ng-click="showAddProjectDialog()">New Project</button></div>
-  </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Project</th>
+  <div sha-loading="viewLoading">
+    <div class="row">
+      <div class="span6"><h3>Projects</h3></div>
+      <div class="span2 title-buttons"><button class="btn btn-primary" ng-click="showAddProjectDialog()">New Project</button></div>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Project</th>
+        </tr>
+      </thead>
+      <tr ng-repeat="project in projects">
+        <td>{{ $index + 1 }}</td>
+        <td><a ng-href="#/project/{{project.id}}">{{ project.name }}</a></td>
       </tr>
-    </thead>
-    <tr ng-repeat="project in projects">
-      <td>{{ $index + 1 }}</td>
-      <td><a ng-href="#/project/{{project.id}}">{{ project.name }}</a></td>
-    </tr>
-  </table>
+    </table>
+  </div>
 </div>

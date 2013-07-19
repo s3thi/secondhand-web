@@ -9,9 +9,12 @@
 
 angular.module('SecondhandApp')
   .controller('MainCtrl', function ($scope, $dialog, Project) {
+    $scope.viewLoading = true;
+
     // Get a list of all projects for this user on view load.
     Project.get({}, function(data) {
       $scope.projects = data.objects;
+      $scope.viewLoading = false;
     });
 
     var createProject = function(projectName) {
