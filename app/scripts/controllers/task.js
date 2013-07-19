@@ -8,9 +8,10 @@
 'use strict';
 
 angular.module('SecondhandApp')
-  .controller('TaskCtrl', function($scope, $routeParams, $q, Project, Task, WorkSession) {
+  .controller('TaskCtrl', function($scope, $routeParams, $q, Project, Task, WorkSession, SessionTimer) {
     $scope.task_id = $routeParams.taskId;
     $scope.viewLoading = true;
+    $scope.SessionTimer = SessionTimer;
 
     var toLocalTimezone = function(sessions) {
       // TODO: move this out from this scope.
