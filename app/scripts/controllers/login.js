@@ -5,12 +5,15 @@
 */
 
 
-//
-// LoginCtrl is responsible for logging the user in.
-//
+'use strict';
+
 angular.module('SecondhandApp')
   .controller('LoginCtrl', function($scope, ApiToken) {
+    $scope.working = false;
+
     $scope.requestApiToken = function() {
+      $scope.working = true;
+
       ApiToken.requestApiToken({
         username: $scope.username,
         password: $scope.password

@@ -115,7 +115,7 @@
                 </div>
                 <div class="control-group">
                   <!-- Username -->
-                  <label class="control-label" for="username">Email</label>
+                  <label class="control-label" for="username">Username</label>
                   <div class="controls">
                     <input type="text" id="username" ng-model="username" class="input-xlarge">
                   </div>
@@ -133,7 +133,10 @@
                 <div class="control-group">
                   <!-- Button -->
                   <div class="controls">
-                    <button class="btn btn-success">Login</button>
+                    <button class="btn btn-success" ng-disabled="working">
+                      <span ng-hide="working">Login</span>
+                      <span ng-show="working">Logging in ...</span>
+                    </button>
                   </div>
                 </div>
               </fieldset>
