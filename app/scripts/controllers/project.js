@@ -8,22 +8,38 @@
 'use strict';
 
 angular.module('SecondhandApp')
-  .controller('ProjectCtrl', function($scope, $routeParams, $dialog, Project, Task, SessionTimer) {
+  .controller('ProjectCtrl', function($scope, $routeParams, $q, $dialog, Project, Task, SessionTimer) {
+    $scope.viewLoading = true;
     $scope.project_id = $routeParams.projectId;
     $scope.SessionTimer = SessionTimer;
 
-    // Get the details of the parent project on view load.
-    Project.get({
-      id: $scope.project_id
-    }, function(data) {
-      $scope.parentProject = data;
-    });
+    // TODO: have to mess around with promises myself. I should definitely consider Restangular now.
 
-    // Get a list of tasks for the parent project on view load.
-    Task.get({
-      project__id: $scope.project_id
-    }, function(data) {
-      $scope.tasks = data.objects;
+    var getParentProject = function() {
+      var deferred = $q.defer();
+
+      Project.get({ id: $scope.project_id }, function(data) {
+        deferred.resolve(data);
+      });
+
+      return deferred.promise;
+    };
+
+    var getTasks = function() {
+      var deferred = $q.defer();
+
+      Task.get({ project__id: $scope.project_id }, function(data) {
+        deferred.resolve(data);
+      });
+
+      return deferred.promise;
+    };
+
+    $q.all([getParentProject(), getTasks()]).then(function(data) {
+      $scope.parentProject = data[0];
+      $scope.tasks = data[1].objects;
+
+      $scope.viewLoading = false;
     });
 
     // TODO: how can I be more DRY here? This is the same code that I have in main.js.
