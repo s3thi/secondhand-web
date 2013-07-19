@@ -8,8 +8,9 @@
 'use strict';
 
 angular.module('SecondhandApp')
-  .controller('TaskCtrl', function($scope, $routeParams, Project, Task, WorkSession) {
+  .controller('TaskCtrl', function($scope, $routeParams, $q, Project, Task, WorkSession) {
     $scope.task_id = $routeParams.taskId;
+    $scope.viewLoading = true;
 
     var toLocalTimezone = function(sessions) {
       // TODO: move this out from this scope.
@@ -19,25 +20,52 @@ angular.module('SecondhandApp')
       }
     };
 
-    // Get the details of the current task on view load.
-    Task.get({
-      id: $scope.task_id
-    }, function(data) {
-      $scope.task = data;
+    var getTask = function() {
+      var deferred = $q.defer();
 
-      // Get parent project.
-      Project.get({
-        id: $scope.task.project_id
+      Task.get({
+        id: $scope.task_id
       }, function(data) {
-        $scope.project = data;
+        deferred.resolve(data);
       });
+
+      return deferred.promise;
+    };
+
+    var getParentProject = function(task) {
+      var deferred = $q.defer();
+
+      Project.get({
+        id: task.project_id
+      }, function(data) {
+        deferred.resolve(data);
+      });
+
+      return deferred.promise;
+    };
+
+    var getWorkSessions = function() {
+      var deferred = $q.defer();
+
+      WorkSession.get({
+        task__id: $scope.task_id
+      }, function(data) {
+        deferred.resolve(data);
+      });
+
+      return deferred.promise;
+    };
+
+    var taskAndProjectPromise = getTask().then(function(data) {
+      $scope.task = data;
+      return getParentProject(data);
     });
 
-    // Get the list of recent WorkSessions for the current task on view load.
-    WorkSession.get({
-      task__id: $scope.task_id
-    }, function(data) {
-      $scope.work_sessions = data.objects;
-      toLocalTimezone($scope.work_sessions);
+    $q.all([taskAndProjectPromise, getWorkSessions()]).then(function(data) {
+      $scope.parentProject = data[0];
+      $scope.workSessions = data[1].objects;
+      toLocalTimezone($scope.workSessions);
+
+      $scope.viewLoading = false;
     });
   });

@@ -6,9 +6,11 @@
 
 
 <div ng-controller="TaskCtrl">
-  <h3>{{ task.name }} </h3>
-  <h5 class="muted">in project {{ project.name }}</h5>
-  <hr>
-  <p>This week: <strong>2h33m</strong></p>
-  <p>Total: <strong>33h2m</strong></p>
+  <div sha-loading="viewLoading">
+    <h3>{{ task.name }} </h3>
+    <h5 class="muted">in project {{ parentProject.name }}</h5>
+    <hr>
+    <p>This week: <strong>2h33m</strong></p>
+    <p>Total: <strong>33h2m</strong></p>
+  </div>
 </div>
