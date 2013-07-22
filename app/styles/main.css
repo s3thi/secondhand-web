@@ -34,6 +34,7 @@
 .title-buttons {
     line-height: 40px;
     margin: 10px 0;
+    text-align: right;
 }
 
 .sha-loading-spinner-container {

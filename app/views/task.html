@@ -8,13 +8,15 @@
 <div ng-controller="TaskCtrl">
   <div sha-loading="viewLoading">
     <div class="row">
-      <div class="span6"><h3>{{ task.name }} </h3></div>
+      <div class="span6"><h3><a href="#/">Projects</a> &rarr;
+        <a href="#/project/{{ parentProject.id }}/">{{ parentProject.name }}</a> &rarr;
+        {{ task.name }} </h3></div>
       <div class="span2 title-buttons">
         <button class="btn btn-primary" ng-click="SessionTimer.startTimer(parentProject, task)"><i class="icon-play"></i> Start</button>
       </div>
     </div>
 
-    <h5 class="muted">in project {{ parentProject.name }}</h5>
+    <!--<h5 class="muted">in project {{ parentProject.name }}</h5>-->
     <hr>
     <p>This week: <strong>2h33m</strong></p>
     <p>Total: <strong>33h2m</strong></p>
