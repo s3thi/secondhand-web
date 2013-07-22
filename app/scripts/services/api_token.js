@@ -5,9 +5,6 @@
 */
 
 
-'use strict';
-
-
 //
 // The ApiToken service takes care of all our authentication needs. It is
 // responsible for logging in, logging out and managing API tokens in
@@ -15,6 +12,8 @@
 //
 angular.module('SecondhandApp')
   .factory('ApiToken', ['$http', '$rootScope', 'Config', function ($http, $rootScope, Config) {
+    'use strict';
+
     var ApiToken = {};
 
     ApiToken.haveToken = function () {

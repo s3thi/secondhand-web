@@ -5,10 +5,10 @@
 */
 
 
-'use strict';
-
 angular.module('SecondhandApp', ['ngResource', 'ui.bootstrap.dialog'])
   .config(function ($routeProvider, $httpProvider) {
+    'use strict';
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',

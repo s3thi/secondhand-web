@@ -5,10 +5,10 @@
 */
 
 
-'use strict';
-
 angular.module('SecondhandApp')
   .filter('secondhand_time', function() {
+    'use strict';
+
     return function(ms) {
       ms = parseInt(ms, 10);
 

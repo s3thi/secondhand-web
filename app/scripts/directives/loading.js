@@ -5,10 +5,10 @@
 */
 
 
-'use strict';
-
 angular.module('SecondhandApp')
   .directive('shaLoading', function() {
+    'use strict';
+
     return {
       restrict: 'A',
       replace: true,
