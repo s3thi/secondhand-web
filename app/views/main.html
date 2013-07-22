@@ -12,17 +12,24 @@
       <div class="span2 title-buttons"><button class="btn btn-primary" ng-click="showAddProjectDialog()">New Project</button></div>
     </div>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Project</th>
+    <div class="placeholder-view" ng-show="projects.length == 0">
+      <p>No projects here.</p>
+      <p>Click the <span class="ng-action" ng-click="showAddProjectDialog()">New Project</span> button to create a new project.</p>
+    </div>
+
+    <div ng-hide="projects.length == 0">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Project</th>
+          </tr>
+        </thead>
+        <tr ng-repeat="project in projects">
+          <td>{{ $index + 1 }}</td>
+          <td><a ng-href="#/project/{{project.id}}">{{ project.name }}</a></td>
         </tr>
-      </thead>
-      <tr ng-repeat="project in projects">
-        <td>{{ $index + 1 }}</td>
-        <td><a ng-href="#/project/{{project.id}}">{{ project.name }}</a></td>
-      </tr>
-    </table>
+      </table>
+    </div>
   </div>
 </div>

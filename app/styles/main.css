@@ -43,3 +43,17 @@
     margin-right: auto;
     margin-top: 150px;
 }
+
+.ng-action {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.ng-action:hover {
+    text-decoration: underline;
+}
+
+.placeholder-view {
+    margin-top: 50px;
+    text-align: center;
+}
