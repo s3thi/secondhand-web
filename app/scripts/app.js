@@ -66,12 +66,21 @@ angular.module('SecondhandApp', ['ngResource', 'ui.bootstrap.dialog'])
   });
 
 
-// Set the correct authorization headers on app startup. If there is
-// an API token already stored in localStorage, don't make the user login
-// again.
 angular.module('SecondhandApp')
-  .run(function (ApiToken) {
+  .run(function ($window, ApiToken, SessionTimer) {
+    'use strict';
+
+    // Set the correct authorization headers on app startup. If there is
+    // an API token already stored in localStorage, don't make the user login
+    // again.
     if (ApiToken.haveToken()) {
       ApiToken.setAuthorizationHeaders(ApiToken.getToken());
     }
+
+    // Don't let the user navigate away from the page if the session timer is running.
+    $window.onbeforeunload = function() {
+      if (SessionTimer.running) {
+        return 'The timer is running. You will lose your current time data if you navigate away from this page';
+      }
+    };
   });
