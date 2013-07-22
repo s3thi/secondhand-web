@@ -21,6 +21,10 @@ angular.module('SecondhandApp')
       }
     };
 
+    $scope.taskRunning = function() {
+      return SessionTimer.running && SessionTimer.currentTask.id === $scope.task.id;
+    };
+
     var getTask = function() {
       var deferred = $q.defer();
 

@@ -12,13 +12,56 @@
         <a href="#/project/{{ parentProject.id }}/">{{ parentProject.name }}</a> &rarr;
         {{ task.name }} </h3></div>
       <div class="span2 title-buttons">
-        <button class="btn btn-primary" ng-click="SessionTimer.startTimer(parentProject, task)"><i class="icon-play"></i> Start</button>
+        <button class="btn btn-primary" ng-hide="taskRunning()" ng-click="SessionTimer.startTimer(parentProject, task)"><i class="icon-play"></i> Start</button>
+        <button class="btn btn-primary" ng-show="taskRunning()"><i class="icon-stop"></i> Stop</button>
       </div>
     </div>
 
-    <!--<h5 class="muted">in project {{ parentProject.name }}</h5>-->
-    <hr>
-    <p>This week: <strong>2h33m</strong></p>
-    <p>Total: <strong>33h2m</strong></p>
+    <div class="placeholder-view" ng-show="workSessions.length == 0">
+      <p>You haven't worked on the task <strong>{{ task.name }}</strong> yet.</p>
+      <p>Click the <span class="ng-action" ng-click="SessionTimer.startTimer(parentProject, task)">Start</span> button to start working on this task.</p>
+    </div>
+
+    <div ng-hide="workSessions.length == 0">
+      <hr>
+
+      <div class="row" style="text-align: center;">
+        <div class="span2">
+          <h4 class="muted">This Week</h4>
+          <h4>02:00</h4>
+        </div>
+
+        <div class="span2 offset1">
+          <h4 class="muted">This Month</h4>
+          <h4>07:35</h4>
+        </div>
+
+        <div class="span2 offset1">
+          <h4 class="muted">All Time</h4>
+          <h4>45:33</h4>
+        </div>
+      </div>
+
+      <hr>
+
+      <h3>History</h3>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Date</th>
+            <th>Total Time</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tr ng-repeat="workSession in workSessions">
+          <td>{{ $index + 1 }}</td>
+          <td>{{ workSession.start_time_local|date:"EEEE, MMMM dd" }}</td>
+          <td>{{ (workSession.end_time_local - workSession.start_time_local)|secondhand_time }}</td>
+          <td>{{ workSession.start_time_local|date:"hh:mm:ss a" }} – {{ workSession.end_time_local|date:"hh:mm:ss a" }}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
