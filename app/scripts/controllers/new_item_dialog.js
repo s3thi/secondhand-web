@@ -5,10 +5,10 @@
 */
 
 
-'use strict';
-
 angular.module('SecondhandApp')
   .controller('NewItemDialogCtrl', function ($scope, dialog) {
+    'use strict';
+
     $scope.close = function(result) {
       dialog.close(result);
     };

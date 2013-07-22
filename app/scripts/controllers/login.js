@@ -5,10 +5,10 @@
 */
 
 
-'use strict';
-
 angular.module('SecondhandApp')
   .controller('LoginCtrl', function($scope, ApiToken) {
+    'use strict';
+
     $scope.working = false;
 
     $scope.requestApiToken = function() {

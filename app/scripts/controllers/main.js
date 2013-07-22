@@ -5,10 +5,10 @@
 */
 
 
-'use strict';
-
 angular.module('SecondhandApp')
   .controller('MainCtrl', function ($scope, $dialog, Project) {
+    'use strict';
+
     $scope.viewLoading = true;
 
     // Get a list of all projects for this user on view load.

@@ -5,10 +5,10 @@
 */
 
 
-'use strict';
-
 angular.module('SecondhandApp')
   .controller('ProjectCtrl', function($scope, $routeParams, $q, $dialog, Project, Task, SessionTimer) {
+    'use strict';
+
     $scope.viewLoading = true;
     $scope.project_id = $routeParams.projectId;
     $scope.SessionTimer = SessionTimer;

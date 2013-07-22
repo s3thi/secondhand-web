@@ -5,10 +5,10 @@
 */
 
 
-'use strict';
-
 angular.module('SecondhandApp')
   .controller('TimerCtrl', function($scope, WorkSession, SessionTimer) {
+    'use strict';
+
     $scope.SessionTimer = SessionTimer;
     $scope.savingWorkSession = false;
 
